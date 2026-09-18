@@ -2,7 +2,7 @@ nv_liom:
   lidar_type: 2 # 0: Ouster, 1: Hesai, 2: Velodyne
 
   # SubT-MRS Hawkins Long Corridor RC
-  lidarTopic: "/velodyne_points" # /velodyne_points or /augmented_cloud
+  lidarTopic: "/augmented_cloud" # /velodyne_points or /augmented_cloud
   imuTopic: "/imu/data"
 
   horizontal_pixel_num: 1800  # VLP-16の1回転あたりの水平方向の解像度

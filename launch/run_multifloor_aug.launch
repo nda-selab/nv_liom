@@ -1,5 +1,5 @@
 <launch>
-    <rosparam file="$(find nv_liom)/config/params_vlp16_multifloor.yaml" command="load" />
+    <rosparam file="$(find nv_liom)/config/params_vlp16_multifloor_aug.yaml" command="load" />
 
     <node pkg="nv_liom" type="nv_lidar_deskew_node" name="nv_lidar_deskew_node"  output="screen"></node>
     <node pkg="nv_liom" type="nv_lidar_projection_node" name="nv_lidar_projection_node"  output="screen"></node>
