@@ -1,0 +1,57 @@
+nv_liom:
+  lidar_type: 2 # 0: Ouster, 1: Hesai, 2: Velodyne
+
+  # SubT-MRS Hawkins Long Corridor RC
+  lidarTopic: "/velodyne_points" # /velodyne_points or /augmented_cloud
+  imuTopic: "/imu/data"
+
+  horizontal_pixel_num: 1800  # VLP-16の1回転あたりの水平方向の解像度
+  vertical_pixel_num: 16      # VLP-16の垂直方向のレーザーライン数
+  horizontal_fov: 360.0       # 水平視野角
+  vertical_max: 15.0          # 垂直最大角度 (°)
+  vertical_min: -15.0         # 垂直最小角度 (°)
+
+  minimum_distance: 0.5       # 最小計測距離 (m)
+  maximum_distance: 50.0      # 最大計測距離 (m)
+
+  mapping_voxel_size: 0.2
+  mapping_range: 5.0
+  mapping_closest_range: 0.5
+  mapping_node_distance: 0.8
+
+  mapping_save_dir: "/media/yozefu03/my_data/map_nvliom/longcorridor/"
+  mapping_in_rgb: 0
+
+  submap_size: 5
+  show_img: 0
+  gravity: 9.8
+  deskew: 1
+  min_intensity: 0
+  normal_neighbor: 2
+
+  visualization_voxel_size: 0.4
+  visaulization_node_skip: 5
+
+  save_voxel_size: 0.2
+
+  # SubT-MRS Hawkins Long Corridor RC
+  # inverse of laser_to_imu
+  # rotation normalized to SO(3)
+  lidar_to_imu_R: [0.999991860,  0.000519624, -0.004001310,
+                  -0.000516138,  0.999999486,  0.000872217,
+                   0.004001761, -0.000870145,  0.999991614]
+
+  lidar_to_imu_t: [-0.079894379, -0.028984861, -0.030294655]
+
+  initial_pose: [1, 0, 0, 0,
+                 0, 1, 0, 0,
+                 0, 0, 1, 0,
+                 0, 0, 0, 1]
+
+  imuAccNoise: 3.9939570888238808e-02
+  imuGyrNoise: 1.5636343949698187e-03
+  imuAccBiasN: 6.4356659353532566e-05
+  imuGyrBiasN: 3.5640318696367613e-05
+
+  correctionNoiseTrans: 0.01
+  correctionNoiseAng: 0.001
