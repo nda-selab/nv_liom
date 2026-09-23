@@ -10,7 +10,7 @@ nv_liom:
   horizontal_fov: 360.0       # 水平視野角
   vertical_max: 15.0          # 垂直最大角度 (°)
   vertical_min: -15.0         # 垂直最小角度 (°)
-  minimum_distance: 0.5       # 最小計測距離 (m)
+  minimum_distance: 0.25      # 最小計測距離 (m)
   maximum_distance: 50.0      # 最大計測距離 (m)
   mapping_voxel_size: 0.2
   mapping_range: 5.0

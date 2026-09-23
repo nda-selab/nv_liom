@@ -154,7 +154,7 @@ int main(int argc, char ** argv) {
     nh.param<std::string>("nv_liom/mapping_save_dir", map_save_dir, "/home/morin/map");
     
     hor_resolution = (hor_fov * M_PI/180.0f)/float(hor_pixel_num);
-    ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num);
+    ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num - 1);
 
     ros::Subscriber subDeskewLiDARPointCloud = nh.subscribe<sensor_msgs::PointCloud2>("/nv_liom/deskew_cloud", 100, OnSubscribeDeskewLiDARPointCloud);
     pubLiDARProjection = nh.advertise<sensor_msgs::PointCloud2>("/nv_liom/projected_cloud", 1000);

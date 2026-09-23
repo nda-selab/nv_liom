@@ -246,7 +246,7 @@ int main(int argc, char ** argv) {
     nh.param<int>("nv_liom/normal_neighbor", normal_neighbor, 2);
 
     hor_resolution = (hor_fov * M_PI/180.0f)/float(hor_pixel_num);
-    ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num);
+    ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num - 1);
 
     OnInitialization();
 

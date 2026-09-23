@@ -1212,7 +1212,7 @@ int main(int argc, char ** argv) {
 
 
     hor_resolution = (hor_fov * M_PI/180.0f)/float(hor_pixel_num);
-    ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num);
+    ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num - 1);
 
 
     lidar_to_imu_R = Eigen::Map<const Eigen::Matrix<double, -1, -1, Eigen::RowMajor>>(extrinsicRotVector.data(), 3, 3);
