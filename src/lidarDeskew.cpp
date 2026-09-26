@@ -181,7 +181,7 @@ void OnSubscribeLiDARPointCloud_Hesai(const sensor_msgs::PointCloud2ConstPtr & m
 
     mtx.unlock();
 
-    while(imu_back_time < max_time) {
+    while(ros::ok() && imu_back_time < max_time) {
         // Wait untill imuQueue fills up to cover all point times
         usleep(1000);
         mtx.lock();
@@ -189,6 +189,9 @@ void OnSubscribeLiDARPointCloud_Hesai(const sensor_msgs::PointCloud2ConstPtr & m
         mtx.unlock();
     }
 
+    if (!ros::ok()) {
+        return;
+    }
 
     if(!EstimateRotation()) {
         pubLiDARDeskew.publish(transformed_msg);
@@ -328,13 +331,17 @@ void OnSubscribeLiDARPointCloud(const sensor_msgs::PointCloud2ConstPtr & msg) {
 
     mtx.unlock();
 
-    while(imu_back_time < max_time) {
+    while (ros::ok() && imu_back_time < max_time) {
         // Wait untill imuQueue fills up to cover all point times
+        usleep(1000);
         mtx.lock();
         imu_back_time = imuQueue.back().header.stamp.toSec();
         mtx.unlock();
     }
 
+    if (!ros::ok()) {
+        return;
+    }
 
     if(!EstimateRotation()) {
         pubLiDARDeskew.publish(transformed_msg);
@@ -475,13 +482,17 @@ void OnSubscribeVelodynePointCloud(const sensor_msgs::PointCloud2ConstPtr & msg)
 
     mtx.unlock();
 
-    while(imu_back_time < max_time) {
+    while (ros::ok() && imu_back_time < max_time) {
         // Wait untill imuQueue fills up to cover all point times
+        usleep(1000);
         mtx.lock();
         imu_back_time = imuQueue.back().header.stamp.toSec();
         mtx.unlock();
     }
 
+    if (!ros::ok()) {
+        return;
+    }
 
     if(!EstimateRotation()) {
         pubLiDARDeskew.publish(transformed_msg);
@@ -634,7 +645,7 @@ void OnSubscribeLiDARPointCloud_Livox(const sensor_msgs::PointCloud2ConstPtr & m
 
     mtx.unlock();
 
-    while(imu_back_time < max_time) {
+    while (ros::ok() && imu_back_time < max_time) {
         // Wait untill imuQueue fills up to cover all point times
         usleep(1000);
         mtx.lock();
@@ -642,6 +653,9 @@ void OnSubscribeLiDARPointCloud_Livox(const sensor_msgs::PointCloud2ConstPtr & m
         mtx.unlock();
     }
 
+    if (!ros::ok()) {
+        return;
+    }
 
     if(!EstimateRotation()) {
         pubLiDARDeskew.publish(transformed_msg);
