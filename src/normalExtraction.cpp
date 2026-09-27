@@ -238,12 +238,24 @@ int main(int argc, char ** argv) {
     nh.param<float>("nv_liom/horizontal_fov", hor_fov, 360.0);
     nh.param<float>("nv_liom/vertical_max", ver_max, 22.5);
     nh.param<float>("nv_liom/vertical_min", ver_min, -22.5);
-
     nh.param<float>("nv_liom/minimum_distance", min_dist, 1.0);
     nh.param<float>("nv_liom/maximum_distance", max_dist, 200.0);
     nh.param<int>("nv_liom/show_img", show_img, 1);
     nh.param<std::string>("nv_liom/mapping_save_dir", map_save_dir, "/home/morin/map");
     nh.param<int>("nv_liom/normal_neighbor", normal_neighbor, 2);
+
+    ROS_INFO_STREAM("[" << ros::this_node::getName() << "] Startup parameters:"
+        << std::setprecision(std::numeric_limits<double>::max_digits10)
+        << "\n  nv_liom/horizontal_pixel_num: " << hor_pixel_num
+        << "\n  nv_liom/vertical_pixel_num: " << ver_pixel_num
+        << "\n  nv_liom/horizontal_fov: " << hor_fov
+        << "\n  nv_liom/vertical_max: " << ver_max
+        << "\n  nv_liom/vertical_min: " << ver_min
+        << "\n  nv_liom/minimum_distance: " << min_dist
+        << "\n  nv_liom/maximum_distance: " << max_dist
+        << "\n  nv_liom/show_img: " << show_img
+        << "\n  nv_liom/mapping_save_dir: " << map_save_dir
+        << "\n  nv_liom/normal_neighbor: " << normal_neighbor);
 
     hor_resolution = (hor_fov * M_PI/180.0f)/float(hor_pixel_num);
     ver_resolution = ((ver_max-ver_min) * M_PI/180.0f)/float(ver_pixel_num - 1);

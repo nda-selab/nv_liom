@@ -4,6 +4,10 @@
 #define PCL_NO_PRECOMPILE
 
 #include <iostream>
+#include <iomanip>
+#include <limits>
+#include <sstream>
+#include <vector>
 #include <signal.h>
 #include <fstream>
 #include <string.h>
@@ -79,6 +83,19 @@
 #include <opencv2/imgproc.hpp>
 
 enum class SensorType { OUSTER, HESAI, VELODYNEXYZIRT, VELODYNE};
+
+inline std::string FormatParameterVector(const std::vector<double>& values) {
+    std::ostringstream stream;
+    stream << std::setprecision(std::numeric_limits<double>::max_digits10) << "[";
+    for (std::size_t i = 0; i < values.size(); ++i) {
+        if (i > 0) {
+            stream << ", ";
+        }
+        stream << values[i];
+    }
+    stream << "]";
+    return stream.str();
+}
 
 struct DeskewPoint {
     PCL_ADD_POINT4D;

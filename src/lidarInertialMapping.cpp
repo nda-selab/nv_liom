@@ -1179,7 +1179,7 @@ int main(int argc, char ** argv) {
     std::vector<double> extrinsicTransVector;
 
     std::string imuTopic;
-    nh.param<std::string>("nv_liom/imuTopic", imuTopic, "/gx5/imu/data");
+    nh.param<std::string>("nv_liom/imuTopic", imuTopic, "/ouster/imu");
     nh.param<float>("nv_liom/mapping_voxel_size", voxel_size, 0.2);
     nh.param<float>("nv_liom/visualization_voxel_size", vis_voxel_size, 0.3);
     nh.param<float>("nv_liom/save_voxel_size", save_voxel_size, 0.2);
@@ -1194,21 +1194,48 @@ int main(int argc, char ** argv) {
     nh.param<std::vector<double>>("nv_liom/lidar_to_imu_R", extrinsicRotVector, std::vector<double>{1, 0, 0, 0, 1, 0, 0, 0, 1});
     nh.param<std::vector<double>>("nv_liom/lidar_to_imu_t", extrinsicTransVector, std::vector<double>{0, 0, 0});
     nh.param<std::vector<double>>("nv_liom/initial_pose", initialPoseVector, std::vector<double>{1, 0 ,0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1});
-
     nh.param<int>("nv_liom/horizontal_pixel_num", hor_pixel_num, 1024);
     nh.param<int>("nv_liom/vertical_pixel_num", ver_pixel_num, 64);
     nh.param<float>("nv_liom/horizontal_fov", hor_fov, 360.0);
     nh.param<float>("nv_liom/vertical_max", ver_max, 22.5);
     nh.param<float>("nv_liom/vertical_min", ver_min, -22.5);
     nh.param<int>("nv_liom/show_img", show_img, 0);
-
     nh.param<double>("nv_liom/imuAccNoise", imuAccNoise, 3.9939570888238808e-03);
     nh.param<double>("nv_liom/imuGyrNoise", imuGyrNoise, 1.5636343949698187e-03);
     nh.param<double>("nv_liom/imuAccBiasN", imuAccBiasN, 6.4356659353532566e-05);
     nh.param<double>("nv_liom/imuGyrBiasN", imuGyrBiasN, 3.5640318696367613e-05);
-
     nh.param<double>("nv_liom/correctionNoiseAng", correctionNoiseAng, 0.001);
     nh.param<double>("nv_liom/correctionNoiseTrans", correctionNoiseTrans, 0.01);
+
+    ROS_INFO_STREAM("[" << ros::this_node::getName() << "] Startup parameters:"
+        << std::setprecision(std::numeric_limits<double>::max_digits10)
+        << "\n  nv_liom/imuTopic: " << imuTopic
+        << "\n  nv_liom/mapping_voxel_size: " << voxel_size
+        << "\n  nv_liom/visualization_voxel_size: " << vis_voxel_size
+        << "\n  nv_liom/save_voxel_size: " << save_voxel_size
+        << "\n  nv_liom/mapping_range: " << mapping_range
+        << "\n  nv_liom/mapping_closest_range: " << mapping_closest_range
+        << "\n  nv_liom/mapping_node_distance: " << mapping_node_distance
+        << "\n  nv_liom/submap_size: " << submap_size
+        << "\n  nv_liom/visaulization_node_skip: " << vis_node_skip
+        << "\n  nv_liom/mapping_save_dir: " << map_save_dir
+        << "\n  nv_liom/mapping_in_rgb: " << mapping_in_rgb
+        << "\n  nv_liom/gravity: " << gravity
+        << "\n  nv_liom/lidar_to_imu_R: " << FormatParameterVector(extrinsicRotVector)
+        << "\n  nv_liom/lidar_to_imu_t: " << FormatParameterVector(extrinsicTransVector)
+        << "\n  nv_liom/initial_pose: " << FormatParameterVector(initialPoseVector)
+        << "\n  nv_liom/horizontal_pixel_num: " << hor_pixel_num
+        << "\n  nv_liom/vertical_pixel_num: " << ver_pixel_num
+        << "\n  nv_liom/horizontal_fov: " << hor_fov
+        << "\n  nv_liom/vertical_max: " << ver_max
+        << "\n  nv_liom/vertical_min: " << ver_min
+        << "\n  nv_liom/show_img: " << show_img
+        << "\n  nv_liom/imuAccNoise: " << imuAccNoise
+        << "\n  nv_liom/imuGyrNoise: " << imuGyrNoise
+        << "\n  nv_liom/imuAccBiasN: " << imuAccBiasN
+        << "\n  nv_liom/imuGyrBiasN: " << imuGyrBiasN
+        << "\n  nv_liom/correctionNoiseAng: " << correctionNoiseAng
+        << "\n  nv_liom/correctionNoiseTrans: " << correctionNoiseTrans);
 
 
     hor_resolution = (hor_fov * M_PI/180.0f)/float(hor_pixel_num);

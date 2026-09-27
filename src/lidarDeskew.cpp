@@ -760,6 +760,16 @@ int main(int argc, char ** argv) {
     nh.param<std::vector<double>>("nv_liom/lidar_to_imu_R", extrinsicRotVector, std::vector<double>{1, 0, 0, 0, 1, 0, 0, 0, 1});
     nh.param<std::vector<double>>("nv_liom/lidar_to_imu_t", extrinsicTransVector, std::vector<double>{0, 0, 0});
 
+    ROS_INFO_STREAM("[" << ros::this_node::getName() << "] Startup parameters:"
+        << std::setprecision(std::numeric_limits<double>::max_digits10)
+        << "\n  nv_liom/lidar_type: " << lidar_type
+        << "\n  nv_liom/imuTopic: " << imuTopic
+        << "\n  nv_liom/lidarTopic: " << lidarTopic
+        << "\n  nv_liom/deskew: " << deskew_flag
+        << "\n  nv_liom/mapping_save_dir: " << map_save_dir
+        << "\n  nv_liom/lidar_to_imu_R: " << FormatParameterVector(extrinsicRotVector)
+        << "\n  nv_liom/lidar_to_imu_t: " << FormatParameterVector(extrinsicTransVector));
+
     lidar_to_imu_R = Eigen::Map<const Eigen::Matrix<double, -1, -1, Eigen::RowMajor>>(extrinsicRotVector.data(), 3, 3);
     lidar_to_imu_t = Eigen::Map<const Eigen::Matrix<double, -1, -1, Eigen::RowMajor>>(extrinsicTransVector.data(), 3, 1);
     poseSize = 0;
