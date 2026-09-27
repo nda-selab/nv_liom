@@ -1,7 +1,6 @@
 nv_liom:
   lidar_type: 2 # 0: Ouster, 1: Hesai, 2: Velodyne
 
-  # Handheld
   lidarTopic: "/augmented_cloud" # /velodyne_points or /augmented_cloud
   imuTopic: "/imu/data"
 
@@ -13,7 +12,7 @@ nv_liom:
   minimum_distance: 0.2       # 最小計測距離 (m) default: 1.0
   maximum_distance: 50.0      # 最大計測距離 (m) default: 100.0
   mapping_voxel_size: 0.2     # default: 0.4
-  mapping_range: 5.0         # default: 10.0
+  mapping_range: 5.0          # default: 10.0
   mapping_closest_range: 0.5
   mapping_node_distance: 0.8  # default: 1.0
   mapping_save_dir: "/media/yozefu03/my_data/map_nvliom/multifloor/"
