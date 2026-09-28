@@ -11,10 +11,10 @@ nv_liom:
   vertical_min: -15.0         # 垂直最小角度 (°)
   minimum_distance: 0.2       # 最小計測距離 (m) default: 1.0
   maximum_distance: 50.0      # 最大計測距離 (m) default: 100.0
-  mapping_voxel_size: 0.2     # default: 0.4
-  mapping_range: 5.0          # default: 10.0
+  mapping_voxel_size: 0.1
+  mapping_range: 5.0
   mapping_closest_range: 0.5
-  mapping_node_distance: 0.8  # default: 1.0
+  mapping_node_distance: 0.8
   mapping_save_dir: "/media/yozefu03/my_data/map_nvliom/multifloor/"
   mapping_in_rgb: 0
   submap_size: 5

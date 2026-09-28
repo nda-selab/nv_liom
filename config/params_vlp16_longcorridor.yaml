@@ -11,7 +11,7 @@ nv_liom:
   vertical_min: -15.0         # 垂直最小角度 (°)
   minimum_distance: 0.2       # 最小計測距離 (m)
   maximum_distance: 50.0      # 最大計測距離 (m)
-  mapping_voxel_size: 0.2
+  mapping_voxel_size: 0.1
   mapping_range: 5.0
   mapping_closest_range: 0.5
   mapping_node_distance: 0.8
